@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en" ng-app="eventsApp">
+<head>
+<meta charset="UTF-8">
+<title>Event Registration</title>
+<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/app.css">
+</head>
+<body ng-cloak>
+		<nav class="navbar navbar-default" ng-controller="menuController">
+			<div class="container-fluid">
+			<div class="navbar-header">
+      		 <a class="navbar-brand" href="{{homeURL}}">Event Registration</a>
+			</div>
+			<div class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="newEvent.html">Create New Event</a></li>
+					<li><a href="editProfile.html">Edit Profile</a></li>
+					<li></li>
+				</ul>
+			</div>
+		</nav>
+<div class="container" >
+
+
+		<!--Edit Event Controller-->
+		<div ng-controller="editEventController" style="padding-left:20px; padding-right: 20px">
+			<div class="container">
+				<h3>New Event</h3>
+			</hr>
+			<form name="newEventForm">	
+				<fieldset>
+					<label for="eventName">Event Name: </label>
+					<input class="form-control" id="eventName" required ng-model="event.name" type="text" placeholder="Name of your event...">
+					<label for="eventDate">Event Date: </label>
+					<input class="form-control" id="eventDate" required ng-pattern="/\d\d/\d\d/\d\d\d\d/" ng-model="event.date"type="text" placeholder="Date of your event...">
+					<label for="eventTime">Event Time: </label>
+					<input class="form-control" id="eventTime" ng-model="event.time" type="text" placeholder="Time of your event...">
+					<label for="eventLocation">Event Location: </label>
+					<input class="form-control" id="eventLocation" ng-model="event.location.address" type="text" placeholder="Address of your event...">
+					<br>
+					<input class="form-control" id="eventCity" ng-model="event.location.city" type="text" class="input-small" placeholder="City...">
+					<input class="form-control" id="eventState" ng-model="event.location.state" type="text" class="input-small" placeholder="State...">
+
+					<label for="eventImageURL">Image:</label>
+					<input class="form-control" id="eventImageURL" required ng-model="event.image" type="url" class="input-xlarge" placeholder="Url of Image...">
+				</fieldset>
+			
+					<img ng-src="{{event.image}}" src="" />
+					<br>
+					<br>
+				<button type="submit" ng-disabled="newEventForm.$invalid" ng-click="saveEvent(event, newEventForm)" class="btn btn-primary">Save</button>
+				<button type="button" ng-click="cancelEdit()" class="btn btn-default">Cancel</button>
+			</form>
+			</div>
+		<!--End Edit New Event Controller-->
+		</div>
+<!--End Container-->		
+</div>
+
+
+
+<!--Call Scripts-->
+<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="bower_components/underscore/underscore.js"></script>
+<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="bower_components/angular/angular.js"></script>
+<script type="text/javascript" src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script type="text/javascript" src="bower_components/angular-resource/angular-resource.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
+<script type="text/javascript" src="js/controllers/menuController.js"></script>
+<script type="text/javascript" src="js/controllers/eventController.js"></script>
+<script type="text/javascript" src="js/controllers/editProfileController.js"></script>
+<script type="text/javascript" src="js/controllers/editEventController.js"></script>
+<script type="text/javascript" src="js/filters.js"></script>
+<script type="text/javascript" src="js/services/eventData.js"></script>
+<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+
+
+</body>
+
+</html>
